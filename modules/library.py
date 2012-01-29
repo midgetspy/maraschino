@@ -13,7 +13,7 @@ def xhr_library():
 
 @app.route('/xhr/library/<item_type>')
 @requires_auth
-def xhr_library_root(item_type):
+def xhr_library_root(item_type, expanded=False):
     api_address = server_api_address()
 
     if not api_address:
@@ -25,7 +25,7 @@ def xhr_library_root(item_type):
         title = "Movies"
 
         if item_type == 'movies':
-            library = xbmc.VideoLibrary.GetMovies(sort={ 'method': 'label', 'ignorearticle' : True }, properties=['playcount'],)
+            library = xbmc.VideoLibrary.GetMovies(sort={ 'method': 'label', 'ignorearticle' : True }, properties=['playcount', 'thumbnail'],)
 
         if item_type == 'shows':
             title = "TV Shows"
@@ -34,11 +34,11 @@ def xhr_library_root(item_type):
     except:
         return render_library(message="There was a problem connecting to the XBMC server.")
 
-    return render_library(library, title)
+    return render_library(library, title, expanded=expanded)
 
 @app.route('/xhr/library/shows/<int:show>')
 @requires_auth
-def xhr_library_show(show):
+def xhr_library_show(show, expanded=False):
     xbmc = jsonrpclib.Server(server_api_address())
     library = xbmc.VideoLibrary.GetSeasons(tvshowid=show, properties=['tvshowid', 'season', 'showtitle', 'playcount'])
     library['tvshowid'] = show
@@ -49,7 +49,7 @@ def xhr_library_show(show):
 
 @app.route('/xhr/library/shows/<int:show>/<int:season>')
 @requires_auth
-def xhr_library_season(show, season):
+def xhr_library_season(show, season, expanded=False):
     xbmc = jsonrpclib.Server(server_api_address())
 
     sort = { 'method': 'episode' }
@@ -60,11 +60,20 @@ def xhr_library_season(show, season):
 
     return render_library(library, title)
 
-def render_library(library=None, title="Media Library", message=None):
-    return render_template('library.html',
+def render_library(library=None, title="Media Library", message=None, expanded=False):
+    if expanded:
+        template = 'library_expanded.html'
+        vfs_url = '%s/vfs/' % (safe_server_address())
+
+    else:
+        template = 'library.html'
+        vfs_url = None
+
+    return render_template(template,
         library = library,
         title = title,
         message = message,
+        vfs_url = vfs_url,
     )
 
 
@@ -76,4 +85,4 @@ def render_library(library=None, title="Media Library", message=None):
 @app.route('/xhr/library/expanded')
 @requires_auth
 def xhr_library_expanded():
-    return render_template('library_expanded.html')
+    return xhr_library_root('movies', expanded=True)

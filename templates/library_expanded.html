@@ -1,3 +1,9 @@
 <div id="library_expanded" style="display: none;">
-  &nbsp;
+
+  <div id="coverflow">
+    {% for item in library.movies %}
+    <img src="{{ vfs_url }}{{ item.thumbnail }}" longdesc="url" alt="{{ item.label }}">
+    {% endfor %}
+  </div>
+
 </div>
