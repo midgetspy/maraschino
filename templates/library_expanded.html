@@ -3,6 +3,9 @@
   <div id="library_expanded_fanart"></div>
 
   <div id="covers">
+    <div class="info">
+      <h1 class="label"></h1>
+    </div>
     <ul class="covers">
       {% for item in library.movies %}
         <li data-label="{{ item.label }}" data-fanart="{{ vfs_url }}{{ item.fanart }}">

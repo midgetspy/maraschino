@@ -181,18 +181,29 @@
     position: absolute;
     white-space: nowrap;
 
+    .info {
+      bottom: 206px;
+      left: 224px;
+      position: absolute;
+
+      .label {
+        font-size: 36px;
+      }
+    }
+
     .covers li {
       display: inline-block;
       margin: 15px 7px;
       .box-shadow(#000, 0, 0, 25px);
 
       &:first-child img {
-        height: 300px;
+        max-width: 200px;
+        max-height: 300px;
       }
 
       img {
         display: block;
-        height: 170px;
+        max-height: 170px;
       }
     }
   }

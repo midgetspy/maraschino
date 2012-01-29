@@ -338,6 +338,7 @@ $(document).ready(function() {
 
       var li = $('#library_expanded #covers li:first-child');
       $('#library_expanded_fanart').attr('style', 'background-image: url(' + li.data('fanart') + ')');
+      $('#library_expanded #covers .info .label').text(li.data('label'));
     });
     return false;
   });
