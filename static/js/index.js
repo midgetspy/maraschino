@@ -331,14 +331,17 @@ $(document).ready(function() {
 
   // expand media libary
 
+  $.update_expanded_library_cover = function() {
+    var li = $('#library_expanded #covers li:first-child');
+    $('#library_expanded_fanart').attr('style', 'background-image: url(' + li.data('fanart') + ')');
+    $('#library_expanded #covers .info .label').text(li.data('label'));
+  };
+
   $(document).on('click', '#expand_library', function() {
     $.get('/xhr/library/expanded', function(data) {
       $('body').addClass('f_expanded_library').append(data);
+      $.update_expanded_library_cover();
       $('#library_expanded').fadeIn(300);
-
-      var li = $('#library_expanded #covers li:first-child');
-      $('#library_expanded_fanart').attr('style', 'background-image: url(' + li.data('fanart') + ')');
-      $('#library_expanded #covers .info .label').text(li.data('label'));
     });
 
     return false;
@@ -358,10 +361,20 @@ $(document).ready(function() {
 
       // left arrow
       case 37:
+        var ul = $('#library_expanded #covers .covers');
+        var li = ul.find('li:last-child');
+        ul.prepend(li.clone());
+        li.remove();
+        $.update_expanded_library_cover();
         break;
 
       // right arrow
       case 39:
+        var ul = $('#library_expanded #covers .covers');
+        var li = ul.find('li:first-child');
+        ul.append(li.clone());
+        li.remove();
+        $.update_expanded_library_cover();
         break;
       }
     }
