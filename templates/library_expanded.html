@@ -9,6 +9,15 @@
 
     {% if library %}
 
+      {% if library.tvshows %}
+        <ul class="covers" data-location="shows">
+        {% for item in library.tvshows %}
+          <li data-label="{{ item.label }}" data-fanart="{{ vfs_url }}{{ item.fanart }}">
+            <img src="{{ vfs_url }}{{ item.thumbnail }}">
+          </li>
+        {% endfor %}
+      {% endif %}
+
       {% if library.movies %}
         <ul class="covers" data-location="movies">
         {% for item in library.movies %}
