@@ -333,8 +333,17 @@ $(document).ready(function() {
 
   $.update_expanded_library_cover = function() {
     var li = $('#library_expanded #covers li:first-child');
-    $('#library_expanded_fanart').attr('style', 'background-image: url(' + li.data('fanart') + ')');
     $('#library_expanded #covers .info .label').text(li.data('label'));
+
+    var fanart_url = li.data('fanart');
+    var img = new Image();
+
+    img.onload = function() {
+      var fanart = $('#library_expanded_fanart');
+      fanart.css('background-image', 'url(' + fanart_url + ')');
+    };
+
+    img.src = fanart_url;
   };
 
   $(document).on('click', '#expand_library', function() {
