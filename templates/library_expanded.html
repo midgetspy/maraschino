@@ -14,7 +14,7 @@
       {% if library.tvshows %}
         <ul class="covers" data-location="shows">
         {% for item in library.tvshows %}
-          <li data-label="{{ item.label }}" data-fanart="{{ vfs_url }}{{ item.fanart }}" data-desc="{{ item.plotoutline|truncate(500) }}">
+          <li data-label="{{ item.label }}" data-fanart="{{ vfs_url }}{{ item.fanart }}" data-details="{{ item.genre }}{% if item.year %} ({{ item.year }}){% endif %}" data-desc="{{ item.plotoutline|truncate(500) }}">
             <img src="{{ vfs_url }}{{ item.thumbnail }}">
           </li>
         {% endfor %}
@@ -23,7 +23,7 @@
       {% if library.movies %}
         <ul class="covers" data-location="movies">
         {% for item in library.movies %}
-          <li data-label="{{ item.label }}" data-desc="{{ item.plotoutline|truncate(500) }}" data-fanart="{{ vfs_url }}{{ item.fanart }}" data-details="{{ item.genre }}{% if item.year %} ({{ item.year }}){% endif %}">
+          <li data-label="{{ item.label }}" data-desc="{{ item.plotoutline|truncate(500) }}" data-details="{{ item.genre }}{% if item.year %} ({{ item.year }}){% endif %}" data-fanart="{{ vfs_url }}{{ item.fanart }}">
             <img src="{{ vfs_url }}{{ item.thumbnail }}">
           </li>
         {% endfor %}
