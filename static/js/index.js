@@ -329,6 +329,16 @@ $(document).ready(function() {
     return false;
   });
 
+  // expand media libary
+
+  $(document).on('click', '#expand_library', function() {
+    $.get('/xhr/library/expanded', function(data) {
+      $('body').append(data);
+      $('#library_expanded').fadeIn(300);
+    });
+    return false;
+  });
+
   // post trakt shout
 
   $(document).on('click', '#add_shout .submit', function() {

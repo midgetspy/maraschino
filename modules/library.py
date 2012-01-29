@@ -66,3 +66,14 @@ def render_library(library=None, title="Media Library", message=None):
         title = title,
         message = message,
     )
+
+
+
+
+
+# expanded libary mode
+
+@app.route('/xhr/library/expanded')
+@requires_auth
+def xhr_library_expanded():
+    return render_template('library_expanded.html')
