@@ -7,11 +7,22 @@
       <h1 class="label"></h1>
     </div>
     <ul class="covers">
-      {% for item in library.movies %}
-        <li data-label="{{ item.label }}" data-fanart="{{ vfs_url }}{{ item.fanart }}">
-          <img src="{{ vfs_url }}{{ item.thumbnail }}">
-        </li>
-      {% endfor %}
+
+      {% if library %}
+
+        {% for item in library.movies %}
+          <li data-label="{{ item.label }}" data-fanart="{{ vfs_url }}{{ item.fanart }}">
+            <img src="{{ vfs_url }}{{ item.thumbnail }}">
+          </li>
+        {% endfor %}
+
+      {% else %}
+
+        <li data-label="Movies"><img src="/static/images/blank_case.png"></li>
+        <li data-label="TV Shows"><img src="/static/images/blank_case.png"></li>
+
+      {% endif %}
+
     </ul>
   </div>
 
