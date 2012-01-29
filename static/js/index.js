@@ -397,6 +397,7 @@ $(document).ready(function() {
         if (location == 'menu') {
           $.get('/xhr/library/expanded/' + li.data('type'), function(data) {
             $('#library_expanded').replaceWith(data);
+            $.update_expanded_library_cover();
           });
         }
 
