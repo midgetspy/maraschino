@@ -336,19 +336,22 @@ $(document).ready(function() {
     $('#library_expanded #covers .info .label').text(li.data('label'));
 
     var fanart_url = li.data('fanart');
-    var img = new Image();
 
-    img.onload = function() {
-      var fanart = $('#library_expanded_fanart');
-      fanart.css('background-image', 'url(' + fanart_url + ')');
-    };
+    if (fanart_url) {
+      var img = new Image();
 
-    img.src = fanart_url;
+      img.onload = function() {
+        var fanart = $('#library_expanded_fanart');
+        fanart.css('background-image', 'url(' + fanart_url + ')');
+      };
+
+      img.src = fanart_url;
+    }
   };
 
   $(document).on('click', '#expand_library', function() {
     $.get('/xhr/library/expanded', function(data) {
-      $('body').addClass('f_expanded_library').append(data);
+      $('body').addClass('f_expanded_library').append(data).find('#library_expanded').hide();
       $.update_expanded_library_cover();
       $('#library_expanded').fadeIn(300);
     });
@@ -358,6 +361,8 @@ $(document).ready(function() {
 
   $(document).keydown(function(e) {
     if ($('body').hasClass('f_expanded_library')) {
+      var ul = $('#library_expanded #covers .covers');
+
       switch(e.which) {
 
       // ESC
@@ -370,7 +375,6 @@ $(document).ready(function() {
 
       // left arrow
       case 37:
-        var ul = $('#library_expanded #covers .covers');
         var li = ul.find('li:last-child');
         ul.prepend(li.clone());
         li.remove();
@@ -379,11 +383,23 @@ $(document).ready(function() {
 
       // right arrow
       case 39:
-        var ul = $('#library_expanded #covers .covers');
         var li = ul.find('li:first-child');
         ul.append(li.clone());
         li.remove();
         $.update_expanded_library_cover();
+        break;
+
+      // enter
+      case 13:
+        var li = ul.find('li:first-child');
+        var location = ul.data('location');
+
+        if (location == 'menu') {
+          $.get('/xhr/library/expanded/' + li.data('type'), function(data) {
+            $('#library_expanded').replaceWith(data);
+          });
+        }
+
         break;
       }
     }

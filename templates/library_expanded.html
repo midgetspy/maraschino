@@ -1,4 +1,4 @@
-<div id="library_expanded" style="display: none;">
+<div id="library_expanded">
 
   <div id="library_expanded_fanart"></div>
 
@@ -6,24 +6,27 @@
     <div class="info">
       <h1 class="label"></h1>
     </div>
-    <ul class="covers">
 
-      {% if library %}
+    {% if library %}
 
+      {% if library.movies %}
+        <ul class="covers" data-type="movies">
         {% for item in library.movies %}
           <li data-label="{{ item.label }}" data-fanart="{{ vfs_url }}{{ item.fanart }}">
             <img src="{{ vfs_url }}{{ item.thumbnail }}">
           </li>
         {% endfor %}
-
-      {% else %}
-
-        <li data-label="Movies"><img src="/static/images/blank_case.png"></li>
-        <li data-label="TV Shows"><img src="/static/images/blank_case.png"></li>
-
       {% endif %}
 
-    </ul>
+    {% else %}
+
+      <ul class="covers" data-location="menu">
+        <li data-label="Movies" data-type="movies"><img src="/static/images/blank_case.png"></li>
+        <li data-label="TV Shows" data-type="shows"><img src="/static/images/blank_case.png"></li>
+      </ul>
+
+    {% endif %}
+
   </div>
 
 </div>
