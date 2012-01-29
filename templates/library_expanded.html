@@ -14,7 +14,16 @@
       {% if library.tvshows %}
         <ul class="covers" data-location="shows">
         {% for item in library.tvshows %}
-          <li data-label="{{ item.label }}" data-fanart="{{ vfs_url }}{{ item.fanart }}" data-details="{{ item.genre }}{% if item.year %} ({{ item.year }}){% endif %}" data-desc="{{ item.plotoutline|truncate(500) }}">
+          <li data-id="{{ item.tvshowid }}" data-label="{{ item.label }}" data-fanart="{{ vfs_url }}{{ item.fanart }}" data-details="{{ item.genre }}{% if item.year %} ({{ item.year }}){% endif %}" data-desc="{{ item.plotoutline|truncate(500) }}">
+            <img src="{{ vfs_url }}{{ item.thumbnail }}">
+          </li>
+        {% endfor %}
+      {% endif %}
+
+      {% if library.seasons %}
+        <ul class="covers" data-location="seasons" data-tvshowid="{{ library.tvshowid }}">
+        {% for item in library.seasons %}
+          <li data-label="{{ item.label }}" data-fanart="{{ vfs_url }}{{ item.fanart }}">
             <img src="{{ vfs_url }}{{ item.thumbnail }}">
           </li>
         {% endfor %}

@@ -40,9 +40,8 @@ def xhr_library_root(library_type, item_type):
 @requires_auth
 def xhr_library_show(library_type, show):
     xbmc = jsonrpclib.Server(server_api_address())
-    library = xbmc.VideoLibrary.GetSeasons(tvshowid=show, properties=['tvshowid', 'season', 'showtitle', 'playcount'])
+    library = xbmc.VideoLibrary.GetSeasons(tvshowid=show, properties=['tvshowid', 'season', 'showtitle', 'playcount', 'thumbnail', 'fanart'])
     library['tvshowid'] = show
-
     title = library['seasons'][0]['showtitle']
 
     return render_library(library_type, library, title)

@@ -404,6 +404,13 @@ $(document).ready(function() {
           });
         }
 
+        else if (location == 'shows') {
+          $.get('/xhr/library/expanded/shows/' + li.data('id'), function(data) {
+            $('#library_expanded').replaceWith(data);
+            $.update_expanded_library_cover();
+          });
+        }
+
         break;
 
       // backspace
