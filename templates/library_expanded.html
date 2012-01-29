@@ -1,10 +1,12 @@
 <div id="library_expanded" style="display: none;">
 
+  <div id="library_expanded_fanart"></div>
+
   <div id="covers">
     <ul class="covers">
       {% for item in library.movies %}
-        <li>
-          <img src="{{ vfs_url }}{{ item.thumbnail }}" longdesc="url" data-label="{{ item.label }}">
+        <li data-label="{{ item.label }}" data-fanart="{{ vfs_url }}{{ item.fanart }}">
+          <img src="{{ vfs_url }}{{ item.thumbnail }}">
         </li>
       {% endfor %}
     </ul>

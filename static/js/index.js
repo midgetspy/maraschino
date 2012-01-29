@@ -335,6 +335,9 @@ $(document).ready(function() {
     $.get('/xhr/library/expanded', function(data) {
       $('body').append(data);
       $('#library_expanded').fadeIn(300);
+
+      var li = $('#library_expanded #covers li:first-child');
+      $('#library_expanded_fanart').attr('style', 'background-image: url(' + li.data('fanart') + ')');
     });
     return false;
   });
