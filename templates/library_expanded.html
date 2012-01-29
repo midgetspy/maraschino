@@ -10,7 +10,7 @@
     {% if library %}
 
       {% if library.movies %}
-        <ul class="covers" data-type="movies">
+        <ul class="covers" data-location="movies">
         {% for item in library.movies %}
           <li data-label="{{ item.label }}" data-fanart="{{ vfs_url }}{{ item.fanart }}">
             <img src="{{ vfs_url }}{{ item.thumbnail }}">

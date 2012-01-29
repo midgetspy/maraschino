@@ -402,6 +402,19 @@ $(document).ready(function() {
         }
 
         break;
+
+      // backspace
+      case 8:
+        var location = ul.data('location');
+
+        if (location == 'movies' || location == 'shows') {
+          $.get('/xhr/library/expanded', function(data) {
+            $('#library_expanded').replaceWith(data);
+            $.update_expanded_library_cover();
+          });
+        }
+
+        break;
       }
     }
   });
