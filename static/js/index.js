@@ -267,13 +267,13 @@ $(document).ready(function() {
   // click show name to view in media library module
 
   $(document).on('click', '#currently_playing .item_info .show', function() {
-    invoke_library('/xhr/library/shows/' + $(this).data('show'));
+    invoke_library('/xhr/library/module/shows/' + $(this).data('show'));
   });
 
   // click show season to view in media library module
 
   $(document).on('click', '#currently_playing .item_info .season', function() {
-    invoke_library('/xhr/library/shows/' + $(this).parent().find('.show').data('show') + '/' + $(this).data('season'));
+    invoke_library('/xhr/library/module/shows/' + $(this).parent().find('.show').data('show') + '/' + $(this).data('season'));
   });
 
   function invoke_library(url) {
@@ -486,7 +486,7 @@ $(document).ready(function() {
   // browse library
 
   $(document).on('click', '#library li.get', function() {
-    var url = '/xhr/library';
+    var url = '/xhr/library/module';
     var commands = $(this).data('command').split('/');
 
     for (var i=0; i < commands.length; i++) {
@@ -519,7 +519,7 @@ $(document).ready(function() {
   });
 
   $(document).on('click', '#library .back', function() {
-    var url = '/xhr/library';
+    var url = '/xhr/library/module';
     var command = $('#library li:first-child').eq(0).data('command');
 
     if (command) {
