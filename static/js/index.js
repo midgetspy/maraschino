@@ -364,7 +364,7 @@ $(document).ready(function() {
 
   $(document).keydown(function(e) {
     if ($('body').hasClass('f_expanded_library')) {
-      var ul = $('#library_expanded #covers .covers');
+      var ul = $('#library_expanded .location');
 
       switch(e.which) {
 
@@ -406,8 +406,12 @@ $(document).ready(function() {
 
         else if (location == 'shows') {
           $.get('/xhr/library/expanded/shows/' + li.data('id'), function(data) {
-            $('#library_expanded').replaceWith(data);
-            $.update_expanded_library_cover();
+            $('#library_expanded #covers').animate({
+              bottom: '-700px'
+            }, 600, function() {
+              $(this).replaceWith($(data).find('.seasons_container').hide());
+              $('#library_expanded .seasons_container').slideDown(300);
+            });
           });
         }
 

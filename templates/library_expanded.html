@@ -2,48 +2,68 @@
 
   <div id="library_expanded_fanart"></div>
 
-  <div id="covers">
-    <div class="info">
-      <h1 class="label"></h1>
-      <p class="details"></p>
-      <p class="desc"></p>
-    </div>
-
     {% if library %}
 
       {% if library.tvshows %}
-        <ul class="covers" data-location="shows">
+      <div id="covers">
+        <div class="info">
+          <h1 class="label"></h1>
+          <p class="details"></p>
+          <p class="desc"></p>
+        </div>
+        <ul class="covers location" data-location="shows">
         {% for item in library.tvshows %}
           <li data-id="{{ item.tvshowid }}" data-label="{{ item.label }}" data-fanart="{{ vfs_url }}{{ item.fanart }}" data-details="{{ item.genre }}{% if item.year %} ({{ item.year }}){% endif %}" data-desc="{{ item.plotoutline|truncate(500) }}">
             <img src="{{ vfs_url }}{{ item.thumbnail }}">
           </li>
         {% endfor %}
+        </ul>
+      </div>
       {% endif %}
 
       {% if library.seasons %}
-        <ul class="covers" data-location="seasons" data-tvshowid="{{ library.tvshowid }}">
+      <div class="seasons_container">
+        <h1 class="label">{{ title }}</h1>
+        <ul class="seasons location" data-location="seasons" data-tvshowid="{{ library.tvshowid }}">
         {% for item in library.seasons %}
-          <li data-label="{{ item.label }}" data-fanart="{{ vfs_url }}{{ item.fanart }}">
-            <img src="{{ vfs_url }}{{ item.thumbnail }}">
+          <li data-label="{{ item.label }}">
+            Season {{ item.season }}
           </li>
         {% endfor %}
+        </ul>
+      </div>
       {% endif %}
 
       {% if library.movies %}
-        <ul class="covers" data-location="movies">
+      <div id="covers">
+        <div class="info">
+          <h1 class="label"></h1>
+          <p class="details"></p>
+          <p class="desc"></p>
+        </div>
+        <ul class="covers location" data-location="movies">
         {% for item in library.movies %}
           <li data-label="{{ item.label }}" data-desc="{{ item.plotoutline|truncate(500) }}" data-details="{{ item.genre }}{% if item.year %} ({{ item.year }}){% endif %}" data-fanart="{{ vfs_url }}{{ item.fanart }}">
             <img src="{{ vfs_url }}{{ item.thumbnail }}">
           </li>
         {% endfor %}
+        </ul>
+      </div>
       {% endif %}
 
     {% else %}
 
-      <ul class="covers" data-location="menu">
+    <div id="covers">
+      <div class="info">
+        <h1 class="label"></h1>
+        <p class="details"></p>
+        <p class="desc"></p>
+      </div>
+      <ul class="covers location" data-location="menu">
         <li data-label="Movies" data-type="movies"><img src="/static/images/blank_case.png"></li>
         <li data-label="TV Shows" data-type="shows"><img src="/static/images/blank_case.png"></li>
       </ul>
+    </div>
 
     {% endif %}
 
