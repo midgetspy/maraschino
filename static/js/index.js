@@ -344,6 +344,29 @@ $(document).ready(function() {
     return false;
   });
 
+  $(document).keydown(function(e) {
+    if ($('body').hasClass('f_expanded_library')) {
+      switch(e.which) {
+
+      // ESC
+      case 27:
+        $('body').removeClass('f_expanded_library');
+        $('#library_expanded').fadeOut(300, function() {
+          $(this).remove();
+        });
+        break;
+
+      // left arrow
+      case 37:
+        break;
+
+      // right arrow
+      case 39:
+        break;
+      }
+    }
+  });
+
   // post trakt shout
 
   $(document).on('click', '#add_shout .submit', function() {
