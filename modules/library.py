@@ -25,7 +25,8 @@ def xhr_library_root(library_type, item_type):
         title = "Movies"
 
         if item_type == 'movies':
-            library = xbmc.VideoLibrary.GetMovies(sort={ 'method': 'label', 'ignorearticle' : True }, properties=['playcount', 'thumbnail', 'fanart'],)
+            library = xbmc.VideoLibrary.GetMovies(sort={ 'method': 'label', 'ignorearticle' : True }, properties=['playcount', 'thumbnail', 'fanart', 'plotoutline', 'genre', 'year'],)
+            print library
 
         if item_type == 'shows':
             title = "TV Shows"
@@ -68,8 +69,6 @@ def render_library(library_type='module', library=None, title="Media Library", m
     else:
         template = 'library.html'
         vfs_url = None
-
-    print library
 
     return render_template(template,
         library = library,

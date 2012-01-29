@@ -333,7 +333,10 @@ $(document).ready(function() {
 
   $.update_expanded_library_cover = function() {
     var li = $('#library_expanded #covers li:first-child');
-    $('#library_expanded #covers .info .label').text(li.data('label'));
+    var info = $('#library_expanded #covers .info');
+    info.find('.label').text(li.data('label'));
+    info.find('.desc').text(li.data('desc'));
+    info.find('.details').text(li.data('details'));
 
     var fanart_url = li.data('fanart');
 
