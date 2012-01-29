@@ -51,17 +51,18 @@
 
   {% endif %}
 
-    <div class="powerholder" style="text-align:right" >
+    <div class="powerholder">
 
       {% if message %}
       <p class="message"><b style="color:red">{{ message }}</b><p>
-	<a class="power" id="poweron" title="Try Wake On LAN"><img src="/static/images/poweron.png" width="14" height="14"/></a>
+	<a class="power" id="poweron" title="Try Wake On LAN" href="#"><img src="/static/images/poweron.png" width="14" height="14"/></a>
       {% endif %}
 
-        <a class="power" title ="Suspend" id="suspend" ><img src="/static/images/suspend.png" width="14" height="14"/></a>
-        <a class="power" title ="Reboot" id="reboot" ><img src="/static/images/reboot.png" width="14" height="14"/></a>
-        <a class="power" title ="Shutdown" id="poweroff" ><img src="/static/images/shutdown.png" width="14" height="14"/></a>
-	<a class="power" title ="Update Library" id="video-update"><img src="/static/images/refresh.png" width="14" height="14"/></a>
-        <a class="power" title ="Clean Library" id="video-clean"><img src="/static/images/clean.png" width="14" height="14"/></a>
+        <a class="power" title ="Suspend" id="suspend" href="#"><img src="/static/images/suspend.png" width="14" height="14"/></a>
+        <a class="power" title ="Reboot" id="reboot" href="#"><img src="/static/images/reboot.png" width="14" height="14"/></a>
+        <a class="power" title ="Shutdown" id="poweroff" href="#"><img src="/static/images/shutdown.png" width="14" height="14"/></a>
+	<a class="power" title ="Update Library" id="video-update" href="#"><img src="/static/images/refresh.png" width="14" height="14"/></a>
+        <a class="power" title ="Clean Library" id="video-clean" href="#"><img src="/static/images/clean.png" width="14" height="14"/></a>
+
     </div>
 </div>

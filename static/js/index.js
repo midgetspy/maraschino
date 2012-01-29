@@ -247,7 +247,7 @@ $(document).ready(function() {
       $('#server_settings .inner').slideUp();
     }
   });
-  
+
   if ($('body').data('show_currently_playing') === 'True') {
     get_currently_playing();
   }
@@ -291,36 +291,42 @@ $(document).ready(function() {
 
   $(document).on('click', '#library #video-update', function() {
     $.get('/xhr/controls/update_video');
+    return false;
   });
 
   // clean video library control
 
   $(document).on('click', '#library #video-clean', function() {
     $.get('/xhr/controls/clean_video');
+    return false;
   });
 
   // xbmc poweron
 
   $(document).on('click', '#library #poweron', function() {
     $.get('/xhr/controls/poweron');
+    return false;
   });
 
   // xbmc poweroff
 
   $(document).on('click', '#library #poweroff', function() {
     $.get('/xhr/controls/poweroff');
+    return false;
   });
 
   // xbmc reboot
 
   $(document).on('click', '#library #reboot', function() {
     $.get('/xhr/controls/reboot');
+    return false;
   });
 
   // xbmc suspend
 
   $(document).on('click', '#library #suspend', function() {
     $.get('/xhr/controls/suspend');
+    return false;
   });
 
   // post trakt shout
