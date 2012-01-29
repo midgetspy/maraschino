@@ -29,3 +29,11 @@
   -o-box-shadow: inset @color @x @y @radius;
   -webkit-box-shadow: inset @color @x @y @radius;
 }
+
+.text-shadow (@color: #000, @x: 1px, @y: 1px, @radius: 2px)
+{
+  text-shadow: @color @x @y @radius;
+  -moz-text-shadow: @color @x @y @radius;
+  -o-text-shadow: @color @x @y @radius;
+  -webkit-text-shadow: @color @x @y @radius;
+}
